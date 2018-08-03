@@ -1,15 +1,13 @@
 package com.example.eiji.disitalwristband;
 
 import android.graphics.Color;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.eiji.disitalwristband.MyFirebaseInstanceIDService;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 import java.util.Random;
 
@@ -22,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(this);
         Log.d("DEBUG", "token?");
         MyFirebaseInstanceIDService instance = new MyFirebaseInstanceIDService();
         instance.onTokenRefresh();
