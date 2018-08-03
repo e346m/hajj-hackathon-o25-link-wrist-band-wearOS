@@ -9,6 +9,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.eiji.disitalwristband.MyFirebaseInstanceIDService;
+
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("DEBUG", "token?");
+        MyFirebaseInstanceIDService instance = new MyFirebaseInstanceIDService();
+        instance.onTokenRefresh();
         setContentView(R.layout.activity_main);
         root = findViewById(R.id.root);
         button = (Button) findViewById(R.id.button1);
