@@ -14,6 +14,14 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
+import com.google.android.gms.common.GoogleApiAvailability;
 
 import java.util.Random;
 
@@ -30,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(this);
+        MyFirebaseInstanceIDService instance = new MyFirebaseInstanceIDService();
+        instance.onTokenRefresh();
         setContentView(R.layout.activity_main);
         root = findViewById(R.id.root);
         button = (Button) findViewById(R.id.button1);
@@ -64,6 +75,17 @@ public class MainActivity extends AppCompatActivity {
         });
         anim = ValueAnimator.ofFloat(0, 1);
         startAnimation(anim);
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                int red = RANDOM.nextInt(255);
+                int blue = RANDOM.nextInt(255);
+                int green = RANDOM.nextInt(255);
+
+                int color = Color.rgb(red, green, blue);
+                root.setBackgroundColor(color);
+            }
+        });
     }
 
       public void startAnimation(ValueAnimator anim){
